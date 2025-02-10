@@ -1,0 +1,53 @@
+<div class="h-[calc(100vh-120px)] flex justify-center items-center">
+    <div class="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-xl font-semibold mb-4">Please Login</h2>
+        <form [formGroup]="myLoginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
+                    type="email" id="email" formControlName="email" placeholder="Email Address">
+                <div class="text-red-500 text-xs italic mb-3"
+                    *ngIf="myLoginForm.get('email')?.invalid && myLoginForm.get('email')?.touched">
+                    <span *ngIf="myLoginForm.get('password')?.errors?.['required']">
+                        Email is required.
+                    </span>                
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
+                    type="password" id="password" formControlName="password" placeholder="Password">
+                <div class="text-red-500 text-xs italic mb-3"
+                    *ngIf="myLoginForm.get('password')?.invalid && myLoginForm.get('password')?.touched">
+                    <span *ngIf="myLoginForm.get('password')?.errors?.['required']">
+                        Password is required.
+                    </span>
+                </div>
+            </div>
+            <p class="text-red-500 text-xs italic mb-3" *ngIf="message">
+                {{ message }}
+            </p>
+            <div>
+                <button type="submit" [disabled]="myLoginForm.invalid"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none">
+                    Login
+                </button>
+            </div>
+        </form>
+        <p class="align-baseline font-medium mt-4 text-sm">
+            Haven't an account? Please
+            <a routerLink="/register" class="text-blue-500 hover:text-blue-700">Register</a>
+        </p>
+
+        <!-- google Sign in -->
+        <div class="mt-4">
+            <button (click)="handleGoogleSignIn()"
+                class="w-full flex flex-wrap gap-1 items-center justify-center bg-secondary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                <fa-icon [icon]="googleIcon" class="mr-2"></fa-icon>Sign in with Google
+            </button>
+        </div>
+        <p class="mt-5 text-center text-gray-500 text-xs">
+            ©2025 Book Store. All rights reserved
+        </p>
+    </div>
+</div>

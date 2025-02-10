@@ -1,0 +1,41 @@
+<div class="h-screen flex justify-center items-center">
+    <div class="w-full max-w-sm mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-xl font-semibold mb-4">Admin Dashboard Login</h2>
+
+        <form [formGroup]="myAdminLoginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
+                    type="text" id="email" formControlName="username" placeholder="Username">
+                <div class="text-red-500 text-xs italic mb-3"
+                    *ngIf="myAdminLoginForm.get('username')?.invalid && myAdminLoginForm.get('username')?.touched">
+                    <span *ngIf="myAdminLoginForm.get('password')?.errors?.['required']">
+                        Username is required.
+                    </span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
+                    type="password" id="password" formControlName="password" placeholder="Password">
+                <div class="text-red-500 text-xs italic mb-3"
+                    *ngIf="myAdminLoginForm.get('password')?.invalid && myAdminLoginForm.get('password')?.touched">
+                    <span *ngIf="myAdminLoginForm.get('password')?.errors?.['required']">
+                        Password is required.
+                    </span>
+                </div>
+            </div>
+
+            <p *ngIf="message" class="text-red-500 text-xs italic mb-3">{{ message }}</p>
+
+            <div class="w-full">
+                <button
+                    class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none">
+                    Login
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-5 text-center text-gray-500 text-xs">©2025 Book Store. All rights reserved.</p>
+    </div>
+</div>

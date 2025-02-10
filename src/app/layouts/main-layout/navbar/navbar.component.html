@@ -1,0 +1,67 @@
+<header class="max-w-screen-2xl mx-auto px-4 py-6">
+    <nav class="flex justify-between items-center">
+        <!-- Left Side -->
+        <div class="flex items-center md:gap-16 gap-4">
+            <a routerLink="/">
+                <fa-icon [icon]="barIcon" class="size-6"></fa-icon>
+            </a>
+
+            <!-- Search Input -->
+            <div class="relative sm:w-72 w-40 space-x-2">
+                <fa-icon [icon]="searchIcon" class="absolute inline-block left-4 inset-y-1"></fa-icon>
+                <input type="text" placeholder="Search Here"
+                    class="bg-[#EAEAEA] w-full py-1 md:px-8 px-6 rounded-md focus:outline-none" />
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="relative flex items-center md:space-x-3 space-x-2">
+            <div>
+                <!-- User Dropdown -->
+                <ng-container *ngIf="currentUser; else showLogin">
+                    <button (click)="toggleDropdown()">
+                        <img [src]="userPhoto || avatarPath" alt="User Avatar" [ngClass]="{'mt-1': currentUser, '': !currentUser}"
+                            class="size-7 rounded-full ring-1 ring-blue-500" />
+                    </button>
+
+
+
+                    <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
+                        <ul class="py-2">
+                            <li *ngFor="let item of navigation">
+                                <a [routerLink]="item.href" (click)="toggleDropdown()"
+                                    class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                    {{ item.name }}
+                                </a>
+                            </li>
+                            <li>
+                                <button (click)="logout()"
+                                    class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                                    Logout
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </ng-container>
+
+                <!-- Show Login Icon if User is Not Logged In -->
+                <ng-template #showLogin>
+                    <a routerLink="/login">
+                        <fa-icon [icon]="userIcon" class="size-6 py-1"></fa-icon>
+                    </a>
+                </ng-template>
+            </div>
+
+            <!-- Wishlist Button -->
+            <button class="hidden sm:block">
+                <fa-icon [icon]="heartIcon" class="size-6"></fa-icon>
+            </button>
+
+            <!-- Cart Button -->
+            <a routerLink="/cart" class="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm">
+                <fa-icon [icon]="cartIcon"></fa-icon>
+                <span class="text-sm font-semibold sm:ml-1">{{ cartCount$ | async }}</span>
+            </a>
+        </div>
+    </nav>
+</header>

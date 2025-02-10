@@ -1,0 +1,12 @@
+<div class="py-16">
+    <h2 class="text-3xl font-semibold mb-6">Recommended For You</h2>
+<swiper-container [slidesPerView]="1" [spaceBetween]="30" [navigation]="true" [breakpoints]="breakpoints" class="mySwiper">
+    <ng-container *ngIf="data.length > 0">
+        <ng-container *ngFor="let book of data | slice:8:16; index as i">
+            <swiper-slide id="{{ i }}">
+                <app-book-card [book]="book"> </app-book-card>
+            </swiper-slide>
+        </ng-container>
+    </ng-container>
+</swiper-container>
+</div>

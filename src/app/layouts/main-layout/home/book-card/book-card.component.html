@@ -1,0 +1,48 @@
+<div class="rounded-lg transition-shadow duration-300">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:h-72 sm:justify-center gap-4">
+        <div class="sm:h-72 sm:flex-shrink-0 border rounded-md">
+            <a [routerLink]="['/books', book._id]">
+                <img *ngIf="book.coverImage" [src]="getBookImgUrl(book.coverImage)" alt="{{book.title}}"
+                    class="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200" />
+            </a>
+        </div>
+
+        <!-- Content container -->
+        <div class="flex flex-col justify-between h-full w-full">
+            <!-- Title and Price Section -->
+            <div>
+                <a [routerLink]="['/books', book._id]">
+                    <h3 class="text-xl font-semibold hover:text-blue-600 mt-3">
+                        {{book.title}}
+                    </h3>
+                </a>
+            </div>
+
+            <!-- Description Section -->
+            <div class="flex-grow">
+                <p class="text-gray-600 mb-5">
+                    <ng-container *ngIf="book.description.length > 80; else showFull">
+                        {{book.description.slice(0, 70)}}...
+                    </ng-container>
+                    <ng-template #showFull>
+                        {{book.description}}
+                    </ng-template>
+                </p>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <div>
+                <p class="font-medium mb-10">
+                    {{book.newPrice}}
+                    <span class="line-through font-normal ml-2">{{book.oldPrice}}</span>
+                </p>
+                <button 
+                    class="btn-primary px-6 space-x-1 flex items-center gap-1 mb-5"
+                    (click)="addBookToCart()"> <!-- Call addBookToCart on click -->
+                    <fa-icon [icon]="shoppingCartIcon"></fa-icon>
+                    <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

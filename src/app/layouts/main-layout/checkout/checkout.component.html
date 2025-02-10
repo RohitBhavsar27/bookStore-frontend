@@ -1,0 +1,185 @@
+<div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+    <div class="container max-w-screen-lg mx-auto">
+        <div>
+            <div>
+                <h2 class="font-semibold text-xl text-gray-600 mb-2">
+                    Cash On Delivery
+                </h2>
+                <p class="text-gray-500 mb-2">${{ totalPrice$ | async }}</p>
+                <p class="text-gray-500 mb-6">Items: {{ cartCount$ | async }}</p>
+            </div>
+
+            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                <form [formGroup]="myCheckoutForm" (ngSubmit)="onSubmit()"
+                    class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3 my-8">
+                    <div class="text-gray-600">
+                        <p class="font-medium text-lg">Personal Details</p>
+                        <p>Please fill out all the fields.</p>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                            <div class="md:col-span-5">
+                                <label for="full_name">Full Name</label>
+                                <input type="text" name="name" id="name" formControlName="name" placeholder="Doe, Jhon"
+                                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                <div class="text-red-500 text-xs italic mb-3"
+                                    *ngIf=" myCheckoutForm.get('name')?.invalid && myCheckoutForm.get('name')?.touched">
+                                    Name is Required
+                                </div>
+                            </div>
+                            <div class="md:col-span-5">
+                                <label for="email">Email Address</label>
+                                <input type="text" name="email" id="email"
+                                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" [value]="userEmail" readonly
+                                    placeholder="email@domain.com" />
+                                <div class="text-red-500 text-xs italic mb-3"
+                                    *ngIf="myCheckoutForm?.get('email')?.invalid && myCheckoutForm?.get('email')?.touched">
+                                    Email is Required
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-5">
+                                <label html="phone">Phone Number</label>
+                                <input type="tel" name="phone" id="phone" formControlName="phone"
+                                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                                    placeholder="+123 456 7890" />
+                                <div class="text-red-500 text-xs italic mb-3"
+                                    *ngIf="myCheckoutForm.get('phone')?.invalid && myCheckoutForm.get('phone')?.touched">
+                                    Phone must be 10 characters.
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-5" formGroupName="address">
+                                <!-- <label for="address">Address</label> -->
+                                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                    <div class="md:col-span-3">
+                                        <label for="street">Address / Street</label>
+                                        <input type="text" name="street" id="street" formControlName="street"
+                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
+                                        <div class="text-red-500 text-xs italic mb-3"
+                                            *ngIf="addressControls['street'].invalid && addressControls['street'].touched">
+                                            Street address is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-2">
+                                        <label for="city">City</label>
+                                        <input type="text" name="city" id="city" formControlName="city"
+                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
+                                        <div class="text-red-500 text-xs italic mb-3"
+                                            *ngIf="addressControls['city'].invalid && addressControls['city'].touched">
+                                            City is required.
+                                        </div>
+                                    </div>
+
+                                    <!-- Country -->
+                                    <div class="md:col-span-2">
+                                        <label for="country">Country</label>
+                                        <div
+                                            class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                                            <input name="country" id="country" placeholder="Country"
+                                                formControlName="country"
+                                                class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" />
+                                            <button tabIndex="-1"
+                                                class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
+                                                <svg class="w-4 h-4 mx-2 fill-current"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                    strokeLinejoin="round">
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                </svg>
+                                            </button>
+                                            <button tabIndex="-1"
+                                                class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
+                                                <svg class="w-4 h-4 mx-2 fill-current"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                    strokeLinejoin="round">
+                                                    <polyline points="18 15 12 9 6 15"></polyline>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="text-red-500 text-xs italic mb-3"
+                                            *ngIf="addressControls['country'].invalid && addressControls['country'].touched">
+                                            Country is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-2">
+                                        <label for="state">State</label>
+                                        <div
+                                            class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                                            <input name="state" id="state" placeholder="State" formControlName="state"
+                                                class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" />
+                                            <button tabIndex="-1"
+                                                class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
+                                                <svg class="w-4 h-4 mx-2 fill-current"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                    strokeLinejoin="round">
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                </svg>
+                                            </button>
+                                            <button tabIndex="-1"
+                                                class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
+                                                <svg class="w-4 h-4 mx-2 fill-current"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                    strokeLinejoin="round">
+                                                    <polyline points="18 15 12 9 6 15"></polyline>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="text-red-500 text-xs italic mb-3"
+                                            *ngIf="addressControls['state'].invalid && addressControls['state'].touched">
+                                            State is required.
+                                        </div>
+                                    </div>
+
+                                    <div class="md:col-span-1">
+                                        <label for="zipcode">Zipcode</label>
+                                        <input type="text" name="zipcode" id="zipcode" formControlName="zipcode"
+                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
+                                        <div class="text-red-500 text-xs italic mb-3"
+                                            *ngIf="addressControls['zipcode'].invalid && addressControls['zipcode'].touched">
+                                            Zipcode is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-5 mt-3">
+                                <div class="inline-flex items-center">
+                                    <input type="checkbox" name="acceptTerms" id="acceptTerms"
+                                        formControlName="acceptTerms" class="form-checkbox" />
+
+                                    <label for="billing_same" class="ml-2">I am aggree to the
+                                        <a class="underline underline-offset-2 text-blue-600">Terms & Conditions</a>
+                                        and
+                                        <a class="underline underline-offset-2 text-blue-600">Shoping Policy.</a>
+                                    </label>
+                                </div>
+                                <div *ngIf="submitted && f['acceptTerms'].errors"
+                                    class="text-red-500 text-xs italic mb-3">
+                                    Accept Terms and Conditions
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-5 text-right">
+                                <div class="inline-flex items-end">
+                                    <button type="submit"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Place an Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

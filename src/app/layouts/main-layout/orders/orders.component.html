@@ -1,0 +1,38 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold mb-4">Your Orders</h2>
+
+    <!-- ✅ Show Loading -->
+    <div *ngIf="isLoading" class="text-center text-gray-500">Loading orders...</div>
+
+    <!-- ✅ Show Error -->
+    <div *ngIf="isError" class="text-center text-red-500">Error fetching orders. Please try again.</div>
+
+    <!-- ✅ Show No Orders Message -->
+    <div *ngIf="!isLoading && !isError && orders.length === 0">
+        {{ noOrdersMessage }}
+    </div>
+
+    <!-- ✅ Show Orders -->
+    <div *ngIf="!isLoading && !isError && orders.length > 0">
+        <div *ngFor="let order of orders; let i = index" class="border-b mb-4 pb-4">
+            <p class="p-1 bg-secondary text-white w-10 rounded mb-1"># {{ i + 1 }}</p>
+            <h2 class="font-bold">Order ID: {{ order.id }}</h2>
+            <p class="text-gray-600">Name: {{ order.name }}</p>
+            <p class="text-gray-600">Email: {{ order.email }}</p>
+            <p class="text-gray-600">Phone: {{ order.phone }}</p>
+            <p class="text-gray-600">Total Price: ${{ order.totalPrice }}</p>
+
+            <h3 class="font-semibold mt-2">Address:</h3>
+            <p>{{ order.address.city }}, {{ order.address.state }}, {{ order.address.country }}, {{
+                order.address.zipcode }}</p>
+
+            <h3 class="font-semibold mt-2">Products:</h3>
+            <ul>
+                <li *ngFor="let productId of order.productIds" [routerLink]="['/books', productId]"
+                    class="cursor-pointer hover:text-blue-500">
+                    {{ productId }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

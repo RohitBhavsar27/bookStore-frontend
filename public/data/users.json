@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Annette Watson",
+        "profilePicture": "https://randomuser.me/api/portraits/women/82.jpg",
+        "rating": 9.3
+    },
+    {
+        "name": "Calvin Steward",
+        "profilePicture": "https://randomuser.me/api/portraits/men/81.jpg",
+        "rating": 8.9
+    },
+    {
+        "name": "Ralph Richards",
+        "profilePicture": "https://randomuser.me/api/portraits/men/80.jpg",
+        "rating": 8.7
+    },
+    {
+        "name": "Bernard Murphy",
+        "profilePicture": "https://randomuser.me/api/portraits/men/79.jpg",
+        "rating": 8.2
+    },
+    {
+        "name": "Arlene Robertson",
+        "profilePicture": "https://randomuser.me/api/portraits/women/78.jpg",
+        "rating": 8.2
+    },
+    {
+        "name": "Jane Lane",
+        "profilePicture": "https://randomuser.me/api/portraits/women/77.jpg",
+        "rating": 8.1
+    },
+    {
+        "name": "Pat Mckinney",
+        "profilePicture": "https://randomuser.me/api/portraits/men/76.jpg",
+        "rating": 7.9
+    },
+    {
+        "name": "Norman Walters",
+        "profilePicture": "https://randomuser.me/api/portraits/men/75.jpg",
+        "rating": 7.7
+    }
+]

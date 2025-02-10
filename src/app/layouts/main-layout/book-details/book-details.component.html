@@ -1,0 +1,22 @@
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="isError">Error happening to load book info</div>
+<div *ngIf="!isLoading && !isError">
+    <div *ngIf="book$ | async as book" class="max-w-lg shadow-md p-5">
+        <h1 class="text-2xl font-bold mb-6">{{ book.title }}</h1>
+        <div class="">
+            <div>
+                <img [src]="getBookImgUrl(book.coverImage)" [alt]="book.title" class="mb-8" />
+            </div>
+        </div>
+        <div class="mb-5">
+            <p class="text-gray-700 mb-4"><strong>Author:</strong> {{ book.author || 'admin' }}</p>
+            <p class="text-gray-700 mb-4"><strong>Published:</strong> {{ book.created_at | date }}</p>
+            <p class="text-gray-700 mb-4 capitalize"><strong>Category:</strong> {{ book.category }}</p>
+            <p class="text-gray-700"><strong>Description:</strong> {{ book.description }}</p>
+        </div>
+        <button (click)="addBookToCart(book)" class="btn-primary px-6 space-x-1 flex items-center gap-1">
+            <fa-icon [icon]="shoppingCartIcon"></fa-icon>
+            <span>Add to Cart</span>
+        </button>
+    </div>
+</div>

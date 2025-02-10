@@ -1,0 +1,25 @@
+<div class="py-16">
+    <h2 class="text-3xl font-semibold mb-6">News</h2>
+
+    <swiper-container [slidesPerView]="1" [spaceBetween]="30" [navigation]="true" [breakpoints]="breakpoints"
+        [pagination]="false" class="mySwiper">
+        <ng-container *ngFor="let news of newsData; index as i">
+            <swiper-slide>
+                <div class="flex flex-col sm:flex-row sm:justify-between items-center gap-12">
+                    <!-- content -->
+                    <div class="py-4">
+                        <a routerLink="/">
+                            <h3 class="text-lg font-medium hover:text-blue-500 mb-4">{{news.title}}</h3>
+                        </a>
+                        <div class="w-12 h-[4px] bg-primary mb-5"></div>
+                        <p class="text-sm text-gray-600">{{news.description}}</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <img *ngIf="news.image" [src]="getNewsImgUrl(news.image)" alt="{{ news.title }}"
+                            class="w-full object-cover" />
+                    </div>
+                </div>
+            </swiper-slide>
+        </ng-container>
+    </swiper-container>
+</div>

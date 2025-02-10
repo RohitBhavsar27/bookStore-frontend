@@ -1,0 +1,68 @@
+<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Add New Book</h2>
+
+    <form [formGroup]="addBookForm" (ngSubmit)="onSubmit()">
+        <!-- Title -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Title</label>
+            <input type="text" formControlName="title" placeholder="Enter book title"
+                class="p-2 border w-full rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Description</label>
+            <textarea formControlName="description" placeholder="Enter book description"
+                class="p-2 border w-full rounded-md focus:outline-none focus:ring focus:border-blue-300"></textarea>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Category</label>
+            <select formControlName="category"
+                class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                <option value="" disabled>Select a Category</option>
+                <option value="business">Business</option>
+                <option value="technology">Technology</option>
+                <option value="fiction">Fiction</option>
+                <option value="horror">Horror</option>
+                <option value="adventure">Adventure</option>
+            </select>
+        </div>
+
+        <!-- Trending Checkbox -->
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" formControlName="trending"
+                    class="rounded text-blue-600 focus:ring focus:ring-offset-2 focus:ring-blue-500" />
+                <span class="ml-2 text-sm font-semibold text-gray-700">Trending</span>
+            </label>
+        </div>
+
+        <!-- Old Price -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Old Price</label>
+            <input type="number" formControlName="oldPrice" placeholder="Old Price"
+                class="p-2 border w-full rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+
+        <!-- New Price -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">New Price</label>
+            <input type="number" formControlName="newPrice" placeholder="New Price"
+                class="p-2 border w-full rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+        </div>
+
+        <!-- Cover Image Upload -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Cover Image</label>
+            <input type="file" (change)="handleFileChange($event)" class="mb-2 w-full" />
+            <p *ngIf="imageFileName" class="text-sm text-gray-500">Selected: {{ imageFileName }}</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-2 bg-green-500 text-white font-bold rounded-md">
+            Add Book
+        </button>
+    </form>
+</div>

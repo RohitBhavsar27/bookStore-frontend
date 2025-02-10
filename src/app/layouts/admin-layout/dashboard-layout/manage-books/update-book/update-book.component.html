@@ -1,0 +1,62 @@
+<div class="max-w-lg mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md" *ngIf="!isLoading">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Update Book</h2>
+
+    <form [formGroup]="updateBookForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+            <input id="title" type="text" formControlName="title" placeholder="Enter book title"
+                class="w-full p-2 border rounded" />
+        </div>
+
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea id="description" formControlName="description" placeholder="Enter book description"
+                class="w-full p-2 border rounded"></textarea>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-4">
+            <label class="block text-sm font-semibold text-gray-700">Category</label>
+            <select formControlName="category"
+                class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                <option *ngFor="let category of categories" [value]="category.value"
+                    [selected]="category.value === updateBookForm.value.category">
+                    {{ category.label }}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" formControlName="trending" class="rounded text-blue-600" />
+                <span class="ml-2 text-sm font-semibold text-gray-700">Trending</span>
+            </label>
+        </div>
+
+        <div class="mb-4">
+            <label for="oldPrice" class="block text-sm font-medium text-gray-700">Old Price</label>
+            <input id="oldPrice" type="number" formControlName="oldPrice" placeholder="Old Price"
+                class="w-full p-2 border rounded" />
+        </div>
+
+        <div class="mb-4">
+            <label for="newPrice" class="block text-sm font-medium text-gray-700">New Price</label>
+            <input id="newPrice" type="number" formControlName="newPrice" placeholder="New Price"
+                class="w-full p-2 border rounded" />
+        </div>
+
+        <div class="mb-4">
+            <label for="coverImage" class="block text-sm font-medium text-gray-700">Cover Image URL</label>
+            <input id="coverImage" type="text" formControlName="coverImage" placeholder="Cover Image URL"
+                class="w-full p-2 border rounded" />
+        </div>
+
+        <button type="submit" class="w-full py-2 bg-blue-500 text-white font-bold rounded-md">
+            Update Book
+        </button>
+    </form>
+</div>
+
+<div *ngIf="isLoading" class="text-center py-8">Loading...</div>
+<div *ngIf="isError" class="text-center text-red-500 py-8">Error fetching book data</div>

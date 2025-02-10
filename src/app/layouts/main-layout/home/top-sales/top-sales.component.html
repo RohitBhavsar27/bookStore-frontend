@@ -1,0 +1,26 @@
+
+<html>
+	<div class="py-10">
+		<h2 class="text-3xl font-semibold mb-6">Top Sellers</h2>
+	
+		<!-- category filter -->
+		<div class="mb-8 flex justify-items-start">
+			<select name="category" id="category"
+				class="border bg-[#EAEAEA] border-gray-300 rounded px-4 py-2 focus:outline-none" [(ngModel)]="selected"
+				(change)="getFilteredBooks()">
+				<ng-container *ngFor="let genre of categories; index as i">
+					<option id="{{ i }}" [value]="genre">{{ genre }}</option>
+				</ng-container>
+			</select>
+		</div>
+		<swiper-container [slidesPerView]="1" [spaceBetween]="30" [navigation]="true" [breakpoints]="breakpoints" class="mySwiper button-prev button-next">
+			<ng-container *ngIf="filteredBooks.length > 0">
+				<ng-container *ngFor="let book of filteredBooks; index as i">
+					<swiper-slide id="{{ i }}">
+						<app-book-card [book]="book"> </app-book-card>
+					</swiper-slide>
+				</ng-container>
+			</ng-container>
+		</swiper-container>
+	</div>
+</html>

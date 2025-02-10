@@ -1,0 +1,89 @@
+<div class="flex mt-12 h-full flex-col overflow-hidden bg-white shadow-xl">
+    <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+      <div class="flex items-start justify-between">
+        <div class="text-lg font-medium text-gray-900">Shopping cart</div>
+        <div class="ml-3 flex h-7 items-center">
+          <button
+            type="button"
+            (click)="onClearCart()"
+            class="relative -m-2 py-1 px-2 bg-red-500 text-white rounded-md hover:bg-secondary transition-all duration-200"
+          >
+            <span class="">Clear Cart</span>
+          </button>
+        </div>
+      </div>
+  
+      <div class="mt-8">
+        <div class="flow-root">
+          <ng-container *ngIf="cartItems$ | async as cartItems">
+            <ul *ngIf="cartItems.length > 0; else noProducts" role="list" class="-my-6 divide-y divide-gray-200">
+              <li *ngFor="let product of cartItems" class="flex py-6">
+                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                  <img
+                    [alt]="product.name"
+                    [src]="'assets/books/' + product.coverImage"
+                    class="h-full w-full object-cover object-center"
+                  />
+                </div>
+  
+                <div class="ml-4 flex flex-1 flex-col">
+                  <div>
+                    <div class="flex flex-wrap justify-between text-base font-medium text-gray-900">
+                      <h3>
+                        <a [routerLink]="['/books', product._id]">{{ product.name }}</a>
+                      </h3>
+                      <p class="sm:ml-4">${{ product.price }}</p>
+                    </div>
+                    <p class="mt-1 text-sm text-gray-500 capitalize">
+                      <strong>Category: </strong>{{ product.category }}
+                    </p>
+                  </div>
+                  <div class="flex flex-1 flex-wrap items-end justify-between space-y-2 text-sm">
+                    <p class="text-gray-500"><strong>Qty:</strong> {{ product.quantity || 1 }}</p>
+  
+                    <div class="flex">
+                      <button
+                        (click)="onRemoveFromCart(product._id)"
+                        type="button"
+                        class="font-medium text-indigo-600 hover:text-indigo-500"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </ng-container>
+          <ng-template #noProducts>
+            <p>No product found!</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  
+    <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+      <div class="flex justify-between text-base font-medium text-gray-900">
+        <p>Subtotal</p>
+        <p>${{ totalPrice$ | async }}</p>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+      <div class="mt-6">
+        <a
+          routerLink="/checkout"
+          class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+        >
+          Checkout
+        </a>
+      </div>
+      <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+        <a routerLink="/">
+          or
+          <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500 ml-1">
+            Continue Shopping <span aria-hidden="true"> &rarr;</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+  
