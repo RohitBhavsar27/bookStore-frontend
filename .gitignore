@@ -43,6 +43,5 @@ Thumbs.db
 
 .codegpt
 
-# Environment
+# Ignore development environment file
 environments
-.vercel
