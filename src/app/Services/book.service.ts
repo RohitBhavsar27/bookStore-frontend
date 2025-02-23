@@ -7,7 +7,7 @@ import { Book } from '../ngrx-state/bookStates/books.model';
     providedIn: 'root'
 })
 export class BookService {
-    private baseUrl = 'http://127.0.0.1:8000/books';
+    private baseUrl = 'https://book-store-backend-ompg.vercel.app/books';
 
     constructor(private http: HttpClient) { }
 
