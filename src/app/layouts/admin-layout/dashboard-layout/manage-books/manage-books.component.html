@@ -17,22 +17,23 @@
                     <!-- Table Header -->
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600">#</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600">Book Title</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600">Category</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600">Price</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600">Actions</th>
+                            <th class="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-600">#</th>
+                            <th class="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-600">Book Title</th>
+                            <th class="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-600">Category</th>
+                            <th class="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-600">Price</th>
+                            <th class="px-2 sm:px-6 py-3 text-left text-xs font-semibold text-gray-600">Actions</th>
                         </tr>
                     </thead>
 
                     <!-- Table Body -->
                     <tbody>
                         <tr *ngFor="let book of books; let i = index" class="hover:bg-gray-50 border-b">
-                            <td class="px-6 py-4 text-gray-700">{{ i + 1 }}</td>
-                            <td class="px-6 py-4">{{ book.title }}</td>
-                            <td class="px-6 py-4">{{ book.category }}</td>
-                            <td class="px-6 py-4">${{ book.newPrice }}</td>
-                            <td class="px-6 py-4 space-x-6">
+                            <td class="px-2 sm:px-6 py-4 text-gray-700">{{ i + 1 }}</td>
+                            <td class="px-2 sm:px-6 py-4">{{ book.title }}</td>
+                            <td class="px-2 sm:px-6 py-4">{{ book.category }}</td>
+                            <td class="px-2 sm:px-6 py-4">${{ book.newPrice }}</td>
+                            <td
+                                class="px-2 sm:px-6 py-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 justify-center">
                                 <button class="text-indigo-500 hover:text-indigo-700 text-xs underline"
                                     (click)="handleEditClick(book._id)">
                                     Edit
