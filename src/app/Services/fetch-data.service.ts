@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class FetchDataService {
     private users_jsonFilePath = 'data/users.json'; // Path to your JSON file
 
-    private baseUrl = 'https://book-store-client-sable.vercel.app/news';
+    private baseUrl = 'https://book-store-backend-ompg.vercel.app/news';
 
     private getHeaders(): HttpHeaders {
         const token = localStorage.getItem('token');

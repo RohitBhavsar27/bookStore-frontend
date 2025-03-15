@@ -10,7 +10,7 @@ export class OrderService {
     constructor(private httpClient: HttpClient) { }
 
     newOrder(order: Order): Observable<any> {
-        return this.httpClient.post<any>("https://book-store-client-sable.vercel.app/orders/newOrder/", order).pipe(
+        return this.httpClient.post<any>("https://book-store-backend-ompg.vercel.app/orders/newOrder/", order).pipe(
             catchError(error => {
                 return throwError(error);
             })
@@ -18,7 +18,7 @@ export class OrderService {
     }
 
     getOrdersByEmail(email: string): Observable<{ orders: any[] }> {  // ✅ Expect an object, not an array
-        return this.httpClient.get<{ orders: any[] }>(`https://book-store-client-sable.vercel.app/orders/getOrder/${email}`).pipe(
+        return this.httpClient.get<{ orders: any[] }>(`https://book-store-backend-ompg.vercel.app/orders/getOrder/${email}`).pipe(
             catchError(error => {
                 console.error("❌ Error fetching orders:", error);
                 return throwError(() => new Error("Failed to fetch orders."));

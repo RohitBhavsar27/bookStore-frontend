@@ -7,7 +7,7 @@ import { Book } from '../ngrx-state/bookStates/books.model';
     providedIn: 'root'
 })
 export class BookService {
-    private baseUrl = 'https://book-store-client-sable.vercel.app/books';
+    private baseUrl = 'https://book-store-backend-ompg.vercel.app/books';
 
     constructor(private http: HttpClient) { }
 
