@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
     providedIn: 'root'
 })
 export class AdminAuthService {
-    private baseUrl = 'https://book-store-backend-ompg.vercel.app'; // ✅ Change to your backend URL
+    private baseUrl = 'https://book-store-client-sable.vercel.app'; // ✅ Change to your backend URL
 
     constructor(private http: HttpClient, private router: Router) { }
 
